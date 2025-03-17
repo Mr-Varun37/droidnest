@@ -1,0 +1,192 @@
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in forwards;
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+.button-hover {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button-hover:hover {
+    background-color: #555;
+    transform: scale(1.05);
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Remove any existing gradient animations */
+@keyframes gradientBG {
+    /* Remove this if it exists */
+}
+
+/* Reset existing animations */
+.service-card::before,
+.service-card:hover::before {
+    display: none;
+}
+
+/* Define new animations */
+@keyframes cardHover {
+    0% {
+        transform: translateY(0);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    100% {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(74, 111, 255, 0.1);
+    }
+}
+
+/* Remove any existing gradient animations */
+@keyframes iconColor {
+    /* Remove this if it exists */
+}
+
+/* Card hover effects */
+.service-card {
+    transition: transform 0.3s ease,
+                background-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(108, 99, 255, 0.15);
+    background: var(--secondary-color);
+    animation: cardHover 0.3s forwards;
+}
+
+.service-card:hover i {
+    transform: translateY(-5px);
+    color: var(--primary-color);
+}
+
+.text-glitch {
+    position: relative;
+    animation: glitch 1s linear infinite;
+    opacity: 0.9;
+}
+
+@keyframes glitch {
+    2%, 64% { transform: translate(2px,0) skew(0deg); }
+    4%, 60% { transform: translate(-2px,0) skew(0deg); }
+    62% { transform: translate(0,0) skew(5deg); }
+}
+
+@keyframes cardPulse {
+    0% {
+        box-shadow: 0 4px 20px rgba(108, 99, 255, 0.1);
+    }
+    50% {
+        box-shadow: 0 4px 30px rgba(108, 99, 255, 0.2);
+    }
+    100% {
+        box-shadow: 0 4px 20px rgba(108, 99, 255, 0.1);
+    }
+}
+
+@keyframes iconGradient {
+    0% {
+        color: #6C63FF;
+    }
+    50% {
+        color: #ff3366;
+    }
+    100% {
+        color: #6C63FF;
+    }
+}
+
+@keyframes iconFloat {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Add a subtle overlay for better text readability */
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.5);
+    z-index: 1;
+}
+
+/* Ensure hero content stays above the overlay */
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+    
+    .service-card {
+        padding: 2rem 1.5rem;
+    }
+}
+
+/* Remove all gradient animations */
+/* Remove any other gradient or rainbow-related animations */
+
+/* Remove all previous animations */
+.service-card::before,
+.service-card::after {
+    display: none !important;
+}
+
+/* Simple hover animation */
+@keyframes cardHover {
+    to {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(74, 111, 255, 0.1);
+    }
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
