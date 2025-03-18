@@ -537,7 +537,7 @@ form select:hover, form select:focus {
 /* ========================= */
 
 footer {
-    background: var(--card-bg);
+    background: black;
     color: var(--text-light);
     padding: 3rem 10%;
 }
