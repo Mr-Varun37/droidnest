@@ -85,7 +85,7 @@
             </div>
         </div>
         <div class="portfolio-download" data-aos="fade-up">
-            <h3>Want to see more of our work?</h3>
+            <h2>Want to see more of our work?</h3>
             <p>Download our detailed portfolio</p>
             <a href="assets/droidnest-portfolio.pdf" download class="download-btn">
                 <i class="fas fa-download"></i> Download Portfolio PDF
@@ -97,27 +97,61 @@
         <h2 data-aos="fade-up">Let's Create Something Amazing</h2>
         <div class="contact-container" data-aos="fade-up" data-aos-delay="100">
             <form id="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Email Address" required>
-                <textarea placeholder="Tell us about your project" required></textarea>
-                <button type="submit" class="primary-btn">Send Message</button>
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                
+                <select name="service" required>
+                    <option value="" disabled selected>Select a Service</option>
+                    <option value="Website Development">Website Development</option>
+                    <option value="Application Development">Application Development</option>
+                    <option value="UI/UX Design">UI/UX Design</option>
+                    <option value="Security">Security</option>
+                    <option value="Other">Other</option>
+                </select>
+    
+                <textarea name="message" id="message" placeholder="Tell us about your project" maxlength="300" required></textarea>
+                <p id="char-counter">0 / 300 characters</p>                            
+                <button type="submit" class="send-btn">Send Message</button>
             </form>
         </div>
     </section>
-
+    
     <footer>
-        <div class="footer-content">
-            <div class="footer-logo">DroidNest</div>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>DroidNest</h3>
+                <p>We build high-end web & app solutions with security and creativity.</p>
+            </div>
+    
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#work">Our Work</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <p>📧 droidnest1317@gmail.com</p>
+                <p>📞 +91 7043684337</p>
+                <div class="social-links">
+                    <a target="_blank" href="https://www.instagram.com/droidnest_info"><i class="fab fa-instagram"></i></a>
+                    <a target="_blank" href="https://www.facebook.com/people/DroidnestInfo/61568922593892"><i class="fab fa-facebook"></i></a>
+                    <a target="_blank" href="https://wa.me/+917043684337"><i class="fab fa-whatsapp"></i></a>
+                    <a target="_blank" href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
             </div>
         </div>
+    
+        <!-- Bottom Section -->
         <div class="footer-bottom">
             <p>&copy; 2025 DroidNest. All rights reserved.</p>
         </div>
     </footer>
+      
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="src/js/main.js"></script>

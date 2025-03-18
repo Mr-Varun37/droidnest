@@ -5,35 +5,6 @@ AOS.init({
     once: true
 });
 
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollTop = 0;
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-});
-
-// Form submission handler
-document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    // Add your form submission logic here
-    alert('Thank you for your message! We will get back to you soon.');
-    this.reset();
-});
-
-// Navbar scroll effect
-window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(10, 10, 10, 0.98)';
-    } else {
-        navbar.style.background = 'rgba(10, 10, 10, 0.95)';
-    }
-});
-
 // Animation on scroll
 const animatedElements = document.querySelectorAll('.animate-on-scroll');
 
@@ -56,27 +27,34 @@ animatedElements.forEach(element => {
     observer.observe(element);
 });
 
-// Remove cursor creation and event listeners
-// Update magnetic effect for buttons without cursor transform
-document.querySelectorAll('.primary-btn, .secondary-btn').forEach(button => {
-    button.addEventListener('mousemove', (e) => {
-        const rect = button.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        button.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
-    });
+/* ========================= */
+/* SCROLLING SECTION */
+/* ========================= */
 
-    button.addEventListener('mouseleave', () => {
-        button.style.transform = '';
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollTop = 0;
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
     });
 });
 
-// Remove or comment out this parallax effect
-/* document.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    document.querySelector('.hero-content').style.transform = `translateY(${scrolled * 0.5}px)`;
-}); */
+// Navbar scroll effect
+window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+    } else {
+        navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+    }
+});
+
+/* ========================= */
+/* HERO SECTION */
+/* ========================= */
 
 // Text scramble effect for hero heading
 class TextScramble {
@@ -147,3 +125,59 @@ const next = () => {
 };
 
 next();
+
+/* ========================= */
+/* CONTACT US SECTION */
+/* ========================= */
+
+// Form submission handler
+document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    let formData = new FormData(this);
+
+    fetch('submit-form.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        if (data.trim() === "success") {
+            alert('Thank you for your message! We will get back to you soon.');
+            document.getElementById('contact-form').reset();
+
+            // 🚀 Scroll to the top smoothly
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        } else {
+            alert('Error: ' + data);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const messageField = document.getElementById("message");
+    const charCounter = document.getElementById("char-counter");
+    const maxChars = 300;
+
+    messageField.addEventListener("input", function () {
+        let charCount = messageField.value.length;
+
+        if (charCount > maxChars) {
+            messageField.value = messageField.value.substring(0, maxChars);
+            charCount = maxChars;
+        }
+
+        charCounter.textContent = `${charCount} / ${maxChars} characters`;
+
+        if (charCount > maxChars - 50) {
+            charCounter.classList.add("warning");
+        } else {
+            charCounter.classList.remove("warning");
+        }
+    });
+});
+

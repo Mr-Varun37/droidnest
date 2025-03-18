@@ -1,3 +1,7 @@
+/* ========================= */
+/* Global Styles & Variables */
+/* ========================= */
+
 :root {
     --primary-color: #4A6FFF;     /* Main brand color - Royal Blue */
     --secondary-color: #1E2337;   /* Dark Navy for depth */
@@ -19,6 +23,10 @@ body {
     color: var(--text-light);
     line-height: 1.6;
 }
+
+/* ========================= */
+/* Navbar Styles */
+/* ========================= */
 
 .navbar {
     position: fixed;
@@ -70,105 +78,129 @@ body {
     color: var(--primary-color);
 }
 
+/* ========================= */
+/* Hero Section */
+/* ========================= */
+
 .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 0 10%;
     position: relative;
     overflow: hidden;
     background: linear-gradient(-45deg, 
-        var(--background-dark) 0%,
-        var(--secondary-color) 25%, 
-        var(--primary-color) 50%,
-        var(--secondary-color) 75%,
-        var(--background-dark) 100%);
-    background-size: 400% 400%;
-    animation: gradientFlow 15s ease infinite;
+        var(--background-dark) 0%, 
+        var(--secondary-color) 30%, 
+        var(--primary-color) 70%, 
+        var(--secondary-color) 100%);
+    background-size: 300% 300%;
+    animation: heroGradientFlow 8s infinite alternate ease-in-out;
 }
 
-/* Remove the existing hero::after if present */
+.hero::before {
+    content: '';
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    top: -100%;
+    left: -100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05), transparent);
+    animation: heroParallax 15s infinite linear;
+    z-index: 0;
+}
+
 .hero::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom,
-        rgba(10, 12, 20, 0.9) 0%,
-        rgba(10, 12, 20, 0.5) 50%,
-        rgba(10, 12, 20, 0.9) 100%
-    );
+    background: rgba(10, 10, 10, 0.5);
     z-index: 1;
 }
 
-/* Add this to your animations.css */
-@keyframes rotateBg {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* Update hero content positioning */
 .hero-content {
     position: relative;
     z-index: 3;
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 1000px;
+    text-align: center;
     padding: 2rem;
-    opacity: 0; /* Start with 0 opacity */
-    animation: heroFade 1s ease forwards;
+    opacity: 0;
+    animation: heroFadeIn 1.2s ease-out forwards;
 }
 
 .hero-content h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem); /* Responsive font size */
+    font-size: 4rem;
     line-height: 1.2;
     margin-bottom: 1.5rem;
-    animation: fadeInUp 1s ease;
+    background: white;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: heroTextPop 1.5s ease-in-out;
+    min-height: 4.8rem; /* Adjust based on text size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-content p {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: var(--text-gray);
     margin-bottom: 2rem;
+    animation: fadeInUp 1.2s ease-out;
 }
 
+
+/* ========================= */
+/* Button Styles */
+/* ========================= */
 .primary-btn, .secondary-btn {
-    padding: 1rem 2rem;
-    border-radius: 5px;
-    text-decoration: none;
+    padding: 0.75rem 1.8rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
     font-weight: 500;
-    transition: all 0.3s ease;
+    letter-spacing: 0.8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
+    text-decoration: none;
+    transition: all 0.25s ease-in-out;
     overflow: hidden;
-    display: inline-block;
+    border: none;
+    cursor: pointer;
 }
 
 .primary-btn {
     background: var(--primary-color);
     color: var(--text-light);
-    margin-right: 1rem;
-    border: none;
-    box-shadow: 0 4px 15px rgba(74, 111, 255, 0.2);
+    box-shadow: 0 3px 8px rgba(74, 111, 255, 0.2);
 }
 
 .secondary-btn {
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
+    margin-left: 20px;
     background: transparent;
+    color: var(--primary-color);
+    border: 1.5px solid var(--primary-color);
+    box-shadow: inset 0 0 5px rgba(108, 99, 255, 0.2);
 }
 
 .primary-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+    background: #3A5BFF;
+    box-shadow: 0 4px 12px rgba(74, 111, 255, 0.3);
 }
 
 .secondary-btn:hover {
-    transform: translateY(-3px);
-    background: var(--primary-color);
+    background: transparent;
     color: var(--text-light);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 12px rgba(108, 99, 255, 0.4);
+    transition: all 0.3s ease-in-out;
 }
+
+/* ========================= */
+/* Services Section */
+/* ========================= */
 
 .services {
     padding: 8rem 5%;
@@ -200,135 +232,49 @@ body {
     cursor: pointer;
     border: 1px solid rgba(74, 111, 255, 0.05);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    animation: elegantFloat 5s ease-in-out infinite alternate, gradientShift 8s infinite linear;
 }
 
 .service-card:hover {
     background: var(--secondary-color);
-    transform: translateY(-10px);
+    transform: translateY(-10px) scale(1.05);
     border-color: var(--primary-color);
     box-shadow: 0 10px 30px rgba(74, 111, 255, 0.1);
-}
+    animation: cardElevate 0.5s forwards;}
 
 .service-card i {
-    font-size: 3.5rem;
-    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 2rem;
+    margin-top: 20px;
+    color: white;
     transition: transform 0.3s ease;
+    animation: professionalGlow 3s infinite alternate ease-in-out;
 }
-
 .service-card:hover i {
     transform: translateY(-5px);
 }
 
-.service-card::before,
-.service-card::after {
-    display: none;
+.service-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
 }
 
-/* Simplify hover animations */
-.service-card:hover i {
-    color: var(--primary-color);
-    transform: translateY(-5px);
-}
-
-/* Remove rainbow/gradient animations */
-.service-card:hover {
-    background: var(--secondary-color);
-    transform: translateY(-10px);
-    border-color: var(--primary-color);
-    box-shadow: 0 10px 30px rgba(74, 111, 255, 0.1);
-}
-
-.contact {
-    padding: 8rem 10%;
-    background: linear-gradient(45deg, rgba(108, 99, 255, 0.1), transparent);
-}
-
-.contact h2 {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.contact-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 2rem;
-    background: rgba(26, 26, 26, 0.5);
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-}
-
-form input, form textarea {
-    width: 100%;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    background: var(--card-bg);
-    border: 1px solid #333;
-    border-radius: 8px;
-    color: var(--text-light);
-    transition: all 0.3s ease;
-}
-
-form input:focus, form textarea:focus {
-    border-color: var(--primary-color);
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.1);
-}
-
-footer {
-    background: var(--card-bg);
-    padding: 3rem 10%;
-    text-align: center;
-}
-
-.social-links a {
-    color: var(--text-light);
-    margin: 0 1rem;
-    font-size: 1.5rem;
-    transition: color 0.3s ease;
-}
-
-.social-links a:hover {
-    color: var(--primary-color);
-}
-
-/* Remove or comment out the existing fadeInUp animation */
-/* @keyframes fadeInUp {...} */
-
-/* Add new fade animation */
-@keyframes heroFade {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@media (max-width: 768px) {
-    .navbar {
-        padding: 1rem 5%;
-    }
-    
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-    
-    .nav-links {
-        display: none;
-    }
-}
+/* ========================= */
+/* Work Section */
+/* ========================= */
 
 .work {
-    padding: 8rem 5%;
+    padding: 5rem 5%;
     background: var(--background-dark);
+    position: relative;
 }
 
-.work h2 {
-    text-align: center;
+.work h2{
     font-size: 2.5rem;
-    margin-bottom: 4rem;
-    color: var (--text-light);
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text-light);
 }
 
 .work-grid {
@@ -342,21 +288,28 @@ footer {
 
 .work-card {
     position: relative;
-    border-radius: 15px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
+    height: 320px;
+    background: var(--secondary-color);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .work-card img {
     width: 100%;
-    height: 250px;
+    height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease-in-out, filter 0.3s ease-in-out;
+}
+
+.work-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(74, 111, 255, 0.3);
 }
 
 .work-card:hover img {
-    transform: scale(1.05);
+    transform: scale(1.1);
+    filter: brightness(1.2);
 }
 
 .work-info {
@@ -365,19 +318,21 @@ footer {
     left: 0;
     right: 0;
     padding: 1.5rem;
-    background: linear-gradient(to top, var(--secondary-color) 0%, transparent 100%);
+    background: rgba(0, 0, 0, 0.85);
     color: var(--text-light);
+    transform: translateY(100%);
+    transition: transform 0.4s ease-in-out, opacity 0.3s ease;
+    opacity: 0;
 }
 
-.work-info h3 {
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
+.work-card:hover .work-info {
+    transform: translateY(0);
+    opacity: 1;
 }
 
-.work-info p {
-    font-size: 0.9rem;
-    color: var(--text-gray);
-}
+/* ========================= */
+/* Portfolio Download Section */
+/* ========================= */
 
 .portfolio-download {
     text-align: center;
@@ -385,16 +340,6 @@ footer {
     padding: 3rem;
     background: var(--secondary-color);
     border-radius: 15px;
-}
-
-.portfolio-download h3 {
-    color: var(--text-light);
-    margin-bottom: 1rem;
-}
-
-.portfolio-download p {
-    color: var(--text-gray);
-    margin-bottom: 2rem;
 }
 
 .download-btn {
@@ -406,20 +351,252 @@ footer {
     color: var(--text-light);
     text-decoration: none;
     border-radius: 8px;
-    transition: all 0.3s ease;
+    margin-top: 20px;
+    transition: all 0.3s ease-in-out;
+    font-weight: 500;
+    animation: pulse 2s infinite;
 }
 
 .download-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(74, 111, 255, 0.2);
+    background: #3A5BFF;
+    box-shadow: 0 5px 15px rgba(74, 111, 255, 0.3);
+    transform: translateY(-2px);
 }
 
-@media (max-width: 768px) {
-    .work-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .work-card img {
-        height: 200px;
-    }
+/* ========================= */
+/* Contact Section */
+/* ========================= */
+
+.contact {
+    padding: 8rem 10%;
+    background: linear-gradient(135deg, rgba(108, 99, 255, 0.2), rgba(30, 30, 30, 0.8));
+    position: relative;
+    overflow: hidden;
+}
+
+.contact::before {
+    content: '';
+    position: absolute;
+    width: 60%;
+    height: 100%;
+    top: 0;
+    left: 20%;
+    background: radial-gradient(circle, rgba(108, 99, 255, 0.3), transparent);
+    filter: blur(120px);
+    z-index: 0;
+}
+
+.contact h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.7rem;
+    font-weight: 700;
+    color: var(--text-light);
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.contact-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(108, 99, 255, 0.2);
+}
+
+/* 🌟 Input Fields - Floating Labels */
+form input, form textarea {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    z-index: 2;
+}
+
+form input:hover, form textarea:hover {
+    border-color: var(--primary-color);
+}
+
+form input:focus, form textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(108, 99, 255, 0.2);
+    outline: none;
+}
+
+form input::placeholder, form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease-in-out;
+}
+
+form input:focus::placeholder, form textarea:focus::placeholder {
+    transform: translateY(-10px);
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+form select {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+form select:hover, form select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.1);
+}
+
+.send-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.8rem;
+    background: linear-gradient(135deg, var(--primary-color) 20%, #5A72FF 80%);
+    color: var(--text-light);
+    text-decoration: none;
+    border-radius: 6px;
+    border: none;
+    box-shadow: 0 3px 8px rgba(74, 111, 255, 0.2);
+    transition: all 0.3s ease-in-out;
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    animation: pulse 2s infinite;
+}
+
+.send-btn:hover {
+    background: linear-gradient(135deg, #4A6FFF, #708CFF);
+    box-shadow: 0 4px 12px rgba(74, 111, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+.send-btn::before {
+    content: '';
+    position: absolute;
+    width: 180%;
+    height: 180%;
+    top: -50%;
+    left: -50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+    transform: scale(0);
+    transition: transform 0.4s ease-out;
+}
+
+.send-btn:hover::before {
+    transform: scale(1);
+}
+
+#char-counter {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    margin-top: -10px;
+    margin-bottom: 1rem;
+    text-align: right;
+    transition: color 0.3s ease-in-out;
+}
+
+#char-counter.warning {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+
+/* ========================= */
+/* Footer Section */
+/* ========================= */
+
+footer {
+    background: var(--card-bg);
+    color: var(--text-light);
+    padding: 3rem 10%;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-column h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: var(--primary-color);
+}
+
+.footer-column p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+}
+
+.social-links {
+    margin-top: 0.8rem;
+}
+
+.social-links a {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    color: var(--text-light);
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    opacity: 0.7;
 }

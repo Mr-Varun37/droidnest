@@ -3,22 +3,6 @@
 ## Overview
 DroidNest is a single-page portfolio website designed to showcase the company's services in web development, application development, UI/UX design, and security. The website features a professional dark theme, animations, and interactions to enhance user experience.
 
-## Project Structure
-```
-droidnest-portfolio
-├── src
-│   ├── css
-│   │   ├── style.css
-│   │   └── animations.css
-│   ├── js
-│   │   └── main.js
-│   └── index.html
-├── assets
-│   └── fonts
-├── .gitignore
-└── README.md
-```
-
 ## Features
 - **Responsive Design**: The website is fully responsive and adapts to various screen sizes.
 - **Smooth Scrolling**: JavaScript is used to implement smooth scrolling for a better navigation experience.
