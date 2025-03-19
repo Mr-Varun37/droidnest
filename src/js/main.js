@@ -1,8 +1,9 @@
 // Initialize AOS (Animate On Scroll)
 AOS.init({
-    duration: 800,
-    offset: 100,
-    once: true
+    duration: 600,
+    delay: 100,
+    once: false,
+    mirror: false
 });
 
 // Animation on scroll
@@ -146,23 +147,19 @@ document.getElementById('contact-form').addEventListener('submit', function (e) 
         method: 'POST',
         body: formData
     })
-    .then(response => response.text())
+    .then(response => response.json())
     .then(data => {
-        if (data.trim() === "success") {
-            alert('Thank you for your message! We will get back to you soon.');
-            document.getElementById('contact-form').reset();
+        alert(data.message);
+        document.getElementById('contact-form').reset();
 
-            // 🚀 Scroll to the top smoothly
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        } else {
-            alert('Error: ' + data);
-        }
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     })
     .catch(error => console.error('Error:', error));
 });
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const messageField = document.getElementById("message");
